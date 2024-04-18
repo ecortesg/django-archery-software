@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Registration Form</title>
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <script src="{% static "js/main.js" %}" defer></script>
+    </head>
+    <body>
+        <main class="container">
+            <img src="{% static "images/LogoAOA.webp" %}" alt="LogoAOA">
+            <h1>{{ tournament.name }}</h1>
+            <div class="form-with-details">
+                <div class="details-container">
+                    <div>
+                        <h2 class="details-title">Date</h2>
+                        <p>{{ tournament.date }}</p>
+                    </div>
+                    <div>
+                        <h2 class="details-title">Place</h2>
+                        <p>{{ tournament.place }}</p>
+                    </div>
+                    <div>
+                        <h2 class="details-title">Divisions</h2>
+                        <ul>
+                            {% for division in tournament.divisions.all %}
+                                <li>{{ division }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                    <h2 class="details-title">Categories</h2>
+                        <ul>
+                            {% for category in tournament.categories.all %}
+                                <li>{{ category }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="details-title">Itinerary</h2>
+                        <p>{{ tournament.itinerary|linebreaksbr }}</p>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <form
+                    id="registration-form"
+                    action="{% url 'create_participant' tournament_id=tournament.id %}"
+                    method="post"
+                    enctype="multipart/form-data"
+                    >
+                        <h2 class="form-title">Register</h2>
+                        {% csrf_token %} 
+                        {{ form }}
+                        <button>SEND</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
