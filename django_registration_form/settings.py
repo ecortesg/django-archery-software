@@ -28,7 +28,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG") == "TRUE"
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ["aventuras-outdoor.up.railway.app", "127.0.0.1", "localhost"]
+
+CSRF_TRUSTED_ORIGINS = ["https://aventuras-outdoor.up.railway.app"]
 
 
 # Application definition
