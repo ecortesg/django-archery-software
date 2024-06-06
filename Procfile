@@ -1,1 +1,1 @@
-web: python manage.py migrate && python manage.py collectstatic --no-input && gunicorn django_registration_form.wsgi
+web: python manage.py migrate && python manage.py collectstatic --no-input && gunicorn django_archery_software.wsgi
